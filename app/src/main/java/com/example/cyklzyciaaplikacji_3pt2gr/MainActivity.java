@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -28,9 +29,15 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        if (savedInstanceState != null) {
+            punkty = savedInstanceState.getInt("PUNKTY", 0);
+        }
+
         buttonPlus = findViewById(R.id.button);
         buttonMinus = findViewById(R.id.button2);
         textView = findViewById(R.id.textViewPunkty);
+
+        textView.setText(String.valueOf(punkty));
 
         buttonPlus.setOnClickListener(
 //                new View.OnClickListener() {
@@ -93,5 +100,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.i("CZAS", "Wywolana metoda onDestroy");
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.i("CZAS", "Wywolana metoda onSaveInstanceState");
+        outState.putInt("PUNKTY", punkty);
     }
 }
