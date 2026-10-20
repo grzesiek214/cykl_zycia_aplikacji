@@ -1,6 +1,9 @@
 package com.example.cyklzyciaaplikacji_3pt2gr;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +12,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+    Button buttonPlus, buttonMinus;
+    TextView textView;
+    int punkty = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +25,32 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        buttonPlus = findViewById(R.id.button);
+        buttonMinus = findViewById(R.id.button2);
+        textView = findViewById(R.id.textViewPunkty);
+
+        buttonPlus.setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//
+//                    }
+//                }
+//              To jest to samo
+
+                view -> {
+                    punkty++;
+                    textView.setText(String.valueOf(punkty));
+//                    text dziala
+//                    textView.setText(Integer.toString(punkty));
+                }
+        );
+
+        buttonMinus.setOnClickListener(view -> {
+            punkty--;
+            textView.setText(String.valueOf(punkty));
         });
     }
 }
